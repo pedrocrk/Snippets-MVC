@@ -1,0 +1,49 @@
+@*//-- ===================================================================
+//-- Author:		Pedro Vargas Licona
+//-- Create date:   09/03/2018
+//-- Description:	Snippets KendoGridView Razor
+//-- ===================================================================*@
+    
+@Scripts.Render("~/bundles/Grid_Export")//Include library of excel export
+
+<div class="col-lg-12">
+    @(Html.Kendo().Grid<PROYECT.Modelos.Model>()
+                                .Name("gridView")
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.Fields1).Visible(false);
+                                    //Fecha formateada en columna
+                                    columns.Bound(p => p.FieldsFecha).Title("TituloComlumna").Width("auto").HeaderHtmlAttributes(new { @style = "text-align: center;" })
+                                        .HeaderHtmlAttributes(new { @style = "text-align: center;" })
+                                        .ClientTemplate("#= kendo.toString(kendo.parseDate(FieldsFecha), 'dd/MM/yyyy') != '01/01/0001' ? kendo.toString(kendo.parseDate(FieldsFecha), 'dd/MM/yyyy') : '' #")
+                                        .HtmlAttributes(new { @style = "text-align: center;" });
+                                    //Columna de moneda y formato moneda
+                                    columns.Bound(p => p.Monto).Title("Importe").Width("auto").HeaderHtmlAttributes(new { @style = "text-align: center;" }).HtmlAttributes(new { @style = "text-align: right;" })
+                                        .Format("{0:c}");
+                                    
+                                    //ICheckBoxControl en columna
+                                    columns.Template(@<text></text>)
+                                        .ClientTemplate(
+                                            "# if (Permite_Reestructura == 0) { #" +
+                                                "<div style=\" width:100%;\"> <input type='checkbox' id='chk_#:Num_Factura#' name='chkFactura' style=\"margin-right: auto; margin-left: auto; display: table;\" onclick=\"javascript:SeleccionFila(this, '#:uid#');\" /> </div" +
+                                            "#}#"
+                                            )
+                                        .Title("Generar")
+                                        .Width("70px")
+                                        .HeaderHtmlAttributes(new { @style = "text-align: center;" });
+                                })
+                                .Scrollable(scr => scr.Height(190))
+                                .Events(e => e.DataBound("onGridDataBound"))
+                                //Eport to excel
+                                .ToolBar(tools => tools.Excel().Text("Exportar a Excel"))
+                                .Excel(excel => excel
+                                    .FileName("BitacoraModulo.xlsx")//name of file ecport
+                                    .Filterable(true)
+                                    .AllPages(true)
+                                    .ProxyURL(Url.Action("Excel_Export_Grid", "ReportsGrid"))
+                                    )
+                                .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .ServerOperation(false))
+    )
+</div>
