@@ -12,3 +12,11 @@ $("#Element").rules("add", "required")
 $('#Element').bind('input propertychange', function () {
         //do your update here
 })
+
+//Add elemento to form for serialize
+form = $("#Elementform").serializeArray();
+var newElement = {
+        name: "nameAtribute",
+        value: $('#valueAttribute').val()
+        };
+form.push(newElement);
