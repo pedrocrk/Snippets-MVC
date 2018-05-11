@@ -26,3 +26,6 @@ function SeleccionFila(elem, RowUID) {
         }
     }
 }
+
+//Empty grid
+$("#grid").data("kendoGrid").dataSource.data([]);
