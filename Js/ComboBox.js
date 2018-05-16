@@ -19,5 +19,12 @@ if (Combo.selectedIndex == -1) {
     instFinanciera.select(-1);
     instFinanciera.value('');
 }
-else
+
+//Get value of datasource on metod change
+
+var dataItem = this.dataItem(this.select()); 
+var val1 = dataItem.Attrib1;
+var val2 = dataItem.Atribb2;
     
+---Or--- 
+var attrib = Combo.dataItem(Combo.selectedIndex).Atrib;
