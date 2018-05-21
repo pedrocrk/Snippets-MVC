@@ -26,6 +26,13 @@ function SeleccionFila(elem, RowUID) {
         }
     }
 }
+//Recorrido de checks seleccionados en el grid
+var ListSeleccionadas = '';
+    $('input[name="chkSolicitudd"]:checked').each(function () {
+        strChk_Id = this.id.replace("chk_", "");
+        ListSeleccionadas += strChk_Id + ',';
+    });
+
 
 //Empty grid
 $("#grid").data("kendoGrid").dataSource.data([]);
