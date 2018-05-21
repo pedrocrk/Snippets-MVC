@@ -1,0 +1,140 @@
+
+
+
+//Ejemplo de un registro post desde una lista de registros seleccionados en un grid
+
+
+var Tarjetas_Id = new Array();
+
+function onChange(e) {
+    $(".loadingStatus").text(e.value + "%");
+}
+
+function onComplete(e) {    
+    var total = $("#totalProgressBar").data("kendoProgressBar");
+    total.value(total.value() + 1);
+
+    if (total.value() < total.options.max) {
+        $(".chunkStatus").text(total.value() + 1);
+        
+        Load(total.value());
+    }
+}
+
+function onTotalComplete(e) {
+    $("#Titulo_Complete").text("Fondos Asignados");    
+    setTimeout(function () {
+        $("#ProgresBar").hide();
+    }, 3000);
+}
+
+function Load(Index) {    
+    var pb = $("#loadingProgressBar").data("kendoProgressBar");
+    pb.value(0);
+
+    setTimeout(function () {
+        AsignaFondos(Tarjetas_Id[Index]);
+    }, 1000);
+
+    var interval = setInterval(function () {
+        if (pb.value() < 100) {            
+            pb.value(pb.value() + 1);
+        } else {
+            
+            clearInterval(interval);
+        }
+    }, 10);
+}
+
+function onGridLoadingBarDataBound(e) {
+}
+
+//Evento de seleccion de fila checkbox en grid de impresion
+//------------------------------------------------
+function SeleccionFila(elem, RowUID) {
+
+    var state = $(elem).is(':checked');
+
+    var currenRow = $('[data-uid=' + RowUID + ']');
+
+    if (currenRow != null) {
+        if (state == true) {
+            currenRow.addClass('k-state-selected');
+        }
+        else {
+            currenRow.removeClass('k-state-selected');
+        }
+    }
+}
+
+//Realiza la busqueda de tarjetas
+//------------------------------------------------------
+function GetTarjetas_LoadingBar() {
+    $("#divLoading").show();
+
+    $.post("/Tarjetas/Carnet_ObtenerTarjetas_LoadingBar")
+        .done(function (data) {
+            KendoGrid_Bind('gridLoadingBar', data);
+
+            //Se oculta sección de filtrado
+            //OcultaSeccionFiltro()
+
+            $("#divLoading").hide();
+        })
+        .fail(function () {
+            Notificacion('Tarjetas Carnet', 'Ocurrio un error al obtener los registros', 'error');
+            $("#divLoading").hide();
+        });
+
+}
+
+
+//Asignación de fondos a tarjeta asignada.
+function Inicia_Asignacion() {
+    var NumTarjetas = $('input[name="chkTarjeta"]:checked').length;
+    Tarjetas_Id = new Array();
+
+    if (NumTarjetas>0) {
+        
+        $('input[name="chkTarjeta"]:checked').each(function () {
+            strChk_Id = this.id.replace("chk_", "");
+            Tarjetas_Id.push(strChk_Id);
+        });
+
+        $("#NumTarjetas").text(NumTarjetas);
+        var pb = $("#loadingProgressBar").data("kendoProgressBar");
+
+        var total = $("#totalProgressBar").data("kendoProgressBar");
+        total.options.max = NumTarjetas;
+
+        $("#ProgresBar").show();
+
+        $(".statusContainer").show();
+        $("#totalProgressBar").data("kendoProgressBar").value(0);
+        $("#loadingProgressBar").data("kendoProgressBar").value(0);
+        $("#Titulo_Complete").text("Asignando Fondos...");
+        $(".chunkStatus").text(1);
+
+        Load(0);
+    }
+}
+
+function AsignaFondos(Tarjeta_Id) {
+    $.post("/Tarjetas/AsignaFondos_LoadingBar", { Tarjeta_Id: Tarjeta_Id })
+        .done(function (data) {
+            $("#divLoading").hide();
+            if (data.AJAX_Estatus == 1) { //Actualizacion correcta
+
+                GetTarjetas_LoadingBar();
+            }
+            else if (data.AJAX_Estatus == 2) { //Error
+                Notificacion("Administración de tajetas", data.AJAX_Descripcion, 'error');
+                $("#divLoading").hide();
+            }
+        })
+        .fail(function () {
+            Notificacion("Administración de tajetas", 'Ocurrió un error en la asignación del saldo', 'error');
+            $("#divLoading").hide();
+        });
+}
+}
