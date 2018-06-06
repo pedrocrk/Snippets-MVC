@@ -25,7 +25,8 @@
                                     columns.Template(@<text></text>)
                                         .ClientTemplate(
                                             "# if (Permite_Reestructura == 0) { #" +
-                                                "<div style=\" width:100%;\"> <input type='checkbox' id='chk_#:Num_Factura#' name='chkFactura' style=\"margin-right: auto; margin-left: auto; display: table;\" onclick=\"javascript:SeleccionFila(this, '#:uid#');\" /> </div" +
+                                                "<div style=\" width:100%;\"> <input type='checkbox' id='chk_#:Num_Factura#' name='chkFactura' data-Value='#:Valor#'
+                                                    style=\"margin-right: auto; margin-left: auto; display: table;\" onclick=\"javascript:SeleccionFila(this, '#:uid#');\" /> </div" +
                                             "#}#"
                                             )
                                         .Title("Generar")
