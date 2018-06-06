@@ -27,10 +27,13 @@ function SeleccionFila(elem, RowUID) {
     }
 }
 //Recorrido de checks seleccionados en el grid
+var sum;
 var ListSeleccionadas = '';
     $('input[name="chkSolicitudd"]:checked').each(function () {
         strChk_Id = this.id.replace("chk_", "");
         ListSeleccionadas += strChk_Id + ',';
+        //obtener valor desde el data del check
+        sum += $("#" + this.id).attr('data-value');
     });
 
 
