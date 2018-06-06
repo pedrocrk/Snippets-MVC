@@ -51,3 +51,7 @@ var gridData = grid.dataSource.view();
                 FormatButton.hide();
             }
         }
+
+//Obtener el valor de un atributo desde una fila seleccionada en el grid
+var selectedItem = grid.dataItem(grid.select());
+var item= selectedItem.Item;
