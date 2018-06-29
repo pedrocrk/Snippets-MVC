@@ -16,6 +16,8 @@
                                     columns.Bound(p => p.FieldsFecha).Title("TituloComlumna").Width("auto").HeaderHtmlAttributes(new { @style = "text-align: center;" })
                                         .HeaderHtmlAttributes(new { @style = "text-align: center;" })
                                         .ClientTemplate("#= kendo.toString(kendo.parseDate(FieldsFecha), 'dd/MM/yyyy') != '01/01/0001' ? kendo.toString(kendo.parseDate(FieldsFecha), 'dd/MM/yyyy') : '' #")
+                                        //Cuando atributo fecha es nulo
+                                        .ClientTemplate("#= (FieldsFecha == null) ? ' ' : kendo.toString(kendo.parseDate(FieldsFecha), 'dd/MM/yyyy') != '01/01/0001' ? kendo.toString(kendo.parseDate(FieldsFecha), 'dd/MM/yyyy') : '' #")
                                         .HtmlAttributes(new { @style = "text-align: center;" });
                                     //Columna de moneda y formato moneda
                                     columns.Bound(p => p.Monto).Title("Importe").Width("auto").HeaderHtmlAttributes(new { @style = "text-align: center;" }).HtmlAttributes(new { @style = "text-align: right;" })
