@@ -20,7 +20,8 @@
                                     //Columna de moneda y formato moneda
                                     columns.Bound(p => p.Monto).Title("Importe").Width("auto").HeaderHtmlAttributes(new { @style = "text-align: center;" }).HtmlAttributes(new { @style = "text-align: right;" })
                                         .Format("{0:c}");
-                                    
+                                    //Formato de porcentaje
+                                    .ClientTemplate("#=kendo.format(\"{0:p}\", "Field" / 100)#");
                                     //ICheckBoxControl en columna
                                     columns.Template(@<text></text>)
                                         .ClientTemplate(
