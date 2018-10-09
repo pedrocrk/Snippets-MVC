@@ -58,3 +58,28 @@ var gridData = grid.dataSource.view();
 //Obtener el valor de un atributo desde una fila seleccionada en el grid
 var selectedItem = grid.dataItem(grid.select());
 var item= selectedItem.Item;
+            
+// Evento OnExcelExoprt del grid, para la correcta exportacion en columnas con templetes
+function DinamicExcelExport(e) {
+    var sheet = e.workbook.sheets[0];
+    var colTemplates = [];  //Initialize new array
+    var data = this.dataSource.view();
+
+    for (var i = 0; i < this.columns.length; i++) {
+        if (this.columns[i].template) {
+            colTemplates.push(kendo.template(this.columns[i].template)); //Add kendo template to colTemplate array if it exists for the given index's column
+        } else {
+            colTemplates.push(null); //Add null to given index if template does not exist for the column index. This ensures columns are mapped to the proper index.
+        }
+    }
+
+    //colTemplate array has been built now: Example of array at this point)     colTemplate: { templateCol[0], null, templateCol[3], null, null  }
+
+    for (var i = 0; i < colTemplates.length; i++) {
+        for (var j = 0; j < data.length; j++) {
+            if (colTemplates[i] != null) {
+                sheet.rows[j + 1].cells[i].value = colTemplates[i](data[j]); //Loop through all colTemplates and all data in the grid to build the excel sheet. Skip null colTemplates.
+            }
+        }
+    }
+}
