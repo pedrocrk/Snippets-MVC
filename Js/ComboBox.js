@@ -30,7 +30,7 @@ var val2 = dataItem.Atribb2;
 var attrib = Combo.dataItem(Combo.selectedIndex).Atrib;
 
 //configurar el origen de datos para el comobo
-var DS_Fraccionamiento = new kendo.data.DataSource({
+var DS = new kendo.data.DataSource({
             transport: {
                 read: {
                     url: "/Cotroller/Action",
@@ -41,7 +41,7 @@ var DS_Fraccionamiento = new kendo.data.DataSource({
                 }
             }
         });
-        Combo.setDataSource(DS_Fraccionamiento);
+        Combo.setDataSource(DS);
 
 //Configurar cascada
 $("#ElemntId").kendoComboBox({
