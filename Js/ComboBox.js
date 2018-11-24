@@ -28,3 +28,23 @@ var val2 = dataItem.Atribb2;
     
 ---Or--- 
 var attrib = Combo.dataItem(Combo.selectedIndex).Atrib;
+
+//configurar el origen de datos para el comobo
+var DS_Fraccionamiento = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "/Cotroller/Action",
+                    dataType: "json", // "jsonp" is required for cross-domain requests; use "json" for same-domain requests
+                    data: function () {
+                        //configuracion de parametros para el controlador
+                    }
+                }
+            }
+        });
+        Combo.setDataSource(DS_Fraccionamiento);
+
+//Configurar cascada
+$("#ElemntId").kendoComboBox({
+            cascadeFrom: "ComboFather",
+            autoBind: false
+        });
