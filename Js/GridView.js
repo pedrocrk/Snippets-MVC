@@ -83,3 +83,22 @@ function DinamicExcelExport(e) {
         }
     }
 }
+            
+            
+     ///Mapear checkboxes de un grid desde una lista del controlador       
+ function Seleccion_Checkboxes() {
+    if ($("#ElementListsValues").val() > 0) {
+        List_Ids = $("#ElementListsValues").val();
+        if (List_Ids!="") {
+            var Array_Ids = List_Ids.split(",").map(Number);
+            ///Recorrido de checks
+            $('input[name="NameCheck"]').each(function (e) {
+                strChk_Id = this.id.replace("chk_", "");
+                //Si uno de los checks coincide con un id de la lista se activa el check
+                if (Array_Ids.indexOf(parseInt(strChk_Id)) != -1) {
+                    $(this).prop('checked', true);
+                }
+            });
+        } 
+    }    
+}
