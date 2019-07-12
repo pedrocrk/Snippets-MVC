@@ -1,0 +1,22 @@
+@(Html.Kendo().ComboBox()
+    .Name("TipoVivienda_Id")
+    .DataTextField("Text")
+    .DataValueField("Value")
+    .HtmlAttributes(new { style = "width:100%", data_val = "true", data_val_required = "Seleccione el tipo de vivienda." })
+    .BindTo(new List<selectlistitem>
+    () {
+    new SelectListItem() {
+    Text = "Casa Habitación", Value = "1"
+    },
+    new SelectListItem() {
+    Text = "Departamento", Value = "2"
+    }
+    })
+    .AutoBind(true)
+    .Filter("contains")
+    .MinLength(3)
+    .NoDataTemplateId("NoDataTemplate")
+    .DataSource(dataSource => dataSource
+    .Read(read => read.Action("Sepomex_ObtenerEstados", "Catalogos").Data("Estado_Filtro"))
+    .ServerFiltering(false))
+)
