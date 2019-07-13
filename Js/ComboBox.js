@@ -20,6 +20,10 @@ if (Combo.selectedIndex == -1) {
     instFinanciera.value('');
 }
 
+//Limpia el datasource del combo
+Combo.dataSource.data([])
+
+
 //Get value of datasource on metod change
 
 var dataItem = this.dataItem(this.select()); 
