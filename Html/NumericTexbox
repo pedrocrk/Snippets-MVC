@@ -1,0 +1,10 @@
+@(Html.Kendo().NumericTextBoxFor(x => x.PlanComision_Porcentaje)
+      .Name("PlanComision_Porcentaje"
+      
+   ///Formato procentaje con 4 decimales------------
+      .Format("##.0000 \\%")
+      .Min(0)
+      .Step(1)
+      .Decimals(4)
+   ///.-------------------------///
+      .HtmlAttributes(new { style = "width: 100%" })
