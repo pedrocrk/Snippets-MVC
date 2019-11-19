@@ -3,10 +3,9 @@
       
    ///Formato procentaje con 4 decimales------------
    https://stackoverflow.com/questions/30948739/kendo-ui-numerictextbox-percentage-format
-   
-      .Format("##.0000 \\%")
+   https://www.telerik.com/forums/numeric-formats
+      .Format("#.#### '%'")
       .Min(0)
-      .Step(1)
       .Decimals(4)
    ///.-------------------------///
       .HtmlAttributes(new { style = "width: 100%" })
