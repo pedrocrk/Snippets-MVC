@@ -2,6 +2,8 @@
       .Name("PlanComision_Porcentaje"
       
    ///Formato procentaje con 4 decimales------------
+   https://stackoverflow.com/questions/30948739/kendo-ui-numerictextbox-percentage-format
+   
       .Format("##.0000 \\%")
       .Min(0)
       .Step(1)
