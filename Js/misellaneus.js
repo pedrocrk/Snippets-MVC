@@ -23,3 +23,7 @@ form.push(newElement);
 
 //Obtener el valor del atributo data de un elemento desde un loop
 $(this).data("value")
+
+
+//Liga de documentacion de listas dinamicas jQuery:
+                               https://api.jqueryui.com/sortable/
