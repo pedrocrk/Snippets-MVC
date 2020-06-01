@@ -102,3 +102,19 @@ function DinamicExcelExport(e) {
         } 
     }    
 }
+
+///Busqueda de elemento en grid por uid
+function DescargaDocsExpediente(uid) {
+    let Ruta_Documento = "";
+    var grid = $("#NameGrid").data("kendoGrid");
+    var gridData = grid.dataSource.view();    
+
+    for (var i = 0; i < gridData.length; i++) {
+        if (gridData[i].uid == uid) {            
+            Ruta_Documento = gridData[i].Ruta_Documento;
+            break;
+        }
+    }
+
+    window.open(Url_DescargaDoctoDigital + '?ruta=' + Ruta_Documento, '_blank');
+}
