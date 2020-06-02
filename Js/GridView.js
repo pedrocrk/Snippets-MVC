@@ -9,6 +9,10 @@ var grid = $("#Elemento").data("kendoGrid");
 //Ocultar Columna de GridView
 grid.hideColumn(2);
 
+//Vaciar grid
+//------------
+grid.dataSource.data([]);
+
 //Evento de seleccion de fila checkbox en grid de impresion
 //------------------------------------------------
 function SeleccionFila(elem, RowUID) {
