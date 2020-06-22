@@ -27,3 +27,7 @@ $(this).data("value")
 
 //Liga de documentacion de listas dinamicas jQuery:
                                https://api.jqueryui.com/sortable/
+
+//Simula readOnly en radionuttons
+//Se deshabilitan los no seleccionados para poder seguir enviando el valor al controlador
+$("input[type=radio][name=Proveedor_Tipo]:not(:checked)").attr('disabled', true);
