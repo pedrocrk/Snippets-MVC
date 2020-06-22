@@ -57,5 +57,6 @@ $("#ElemntId").kendoComboBox({
 //Verifica que el valor actual este activo
     //---------------------------------------------------
     function onAraSocioBound() {
+        //----------------Nombre_Combo, --AttrId, -------AttrNombre, --------Valor_Id, --------------Valor_Nombre
         ComboValorActivo("AraSocio_Id", "AraSocio_Id", "Nombre_Completo", '@Model.AraSocio_Id', '@Model.Nombre_Completo');
     }
