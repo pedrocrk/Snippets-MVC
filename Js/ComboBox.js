@@ -52,3 +52,10 @@ $("#ElemntId").kendoComboBox({
             cascadeFrom: "ComboFather",
             autoBind: false
         });
+
+
+//Verifica que el valor actual este activo
+    //---------------------------------------------------
+    function onAraSocioBound() {
+        ComboValorActivo("AraSocio_Id", "AraSocio_Id", "Nombre_Completo", '@Model.AraSocio_Id', '@Model.Nombre_Completo');
+    }
