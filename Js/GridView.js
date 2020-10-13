@@ -122,3 +122,91 @@ function DescargaDocsExpediente(uid) {
 
     window.open(Url_DescargaDoctoDigital + '?ruta=' + Ruta_Documento, '_blank');
 }
+            
+            
+            /////Cambio de colores en exporyacion de grid
+            
+            function onExcelExport(e) {
+    
+    let rows = e.workbook.sheets[0].rows;
+
+    for (var ri = 0; ri < rows.length; ri++) {
+        let row = rows[ri];
+
+        if (row.type == 'header') {
+            
+            for (var ci = 0; ci < row.cells.length; ci++) {
+                let titulo = row.cells[ci].value;
+
+                if (row.cells[ci].colSpan == 1 && row.cells[ci].rowSpan == 2) {
+                    if (titulo != 'Incidencias')
+                        row.cells[ci].background = "#001A66";
+                    else
+                        row.cells[ci].background = "#000000";
+                }
+
+                if (titulo.indexOf("Ticket Sello Rojo_") != -1 || titulo == 'TICKETS DE SELLO ROJO') {
+                    row.cells[ci].background = "#C11F1F";
+                    row.cells[ci].value = titulo.replace('Ticket Sello Rojo_', '')
+                }
+                if (titulo.indexOf("Ticket Entrega_") != -1 || titulo == 'TICKETS DE ENTREGA') {
+                    row.cells[ci].background = "#FF0000";
+                    row.cells[ci].value = titulo.replace('Ticket Entrega_', '')
+                }
+                if (titulo.indexOf("Ticket Garantia_") != -1 || titulo == 'TICKETS DE GARANTÍA') {
+                    row.cells[ci].background = "#F4F701";
+                    row.cells[ci].color = "#000";
+                    row.cells[ci].value = titulo.replace('Ticket Garantia_', '')
+                }
+                if (titulo.indexOf("Ticket Reincidencia_") != -1 || titulo == 'TICKETS DE REINCIDENCIA') {
+                    row.cells[ci].background = "#CC6600";
+                    row.cells[ci].value = titulo.replace('Ticket Reincidencia_', '')
+                }
+
+            }            
+        }
+        if (row.type == 'data') {
+
+            for (var i = 0; i < row.cells.length; i++) {
+                if (i == 34) {
+                    let valPorcentaje = row.cells[i].value;
+                    row.cells[i].value = kendo.format("{0:p}", parseFloat(row.cells[i].value) / 100);
+                    if (valPorcentaje < 40)
+                        row.cells[i].background = "#2ca609";
+                    else if (valPorcentaje < 70)
+                        row.cells[i].background = "#f4f701";
+                    else
+                        row.cells[i].background = "#f00";
+                }
+                if (i == 35) {
+                    let valPorcentaje = row.cells[i].value;
+                    row.cells[i].value = kendo.format("{0:p}", parseFloat(row.cells[i].value) / 100);
+                    if (valPorcentaje < 40)
+                        row.cells[i].background = "#2ca609";
+                    else if (valPorcentaje < 70)
+                        row.cells[i].background = "#f4f701";
+                    else
+                        row.cells[i].background = "#f00";
+
+
+                }
+                if (i == 36) {
+                    let valPorcentaje = row.cells[i].value;
+                    row.cells[i].value = kendo.format("{0:p}", parseFloat(row.cells[i].value) / 100);
+                    if (valPorcentaje < 40)
+                        row.cells[i].background = "#2ca609";
+                    else if (valPorcentaje < 70)
+                        row.cells[i].background = "#f4f701";
+                    else
+                        row.cells[i].background = "#f00";
+                }
+
+                if (i == 32 ||i == 33 ||i == 37 ||i == 25 ||i == 17 ||i == 10) {
+                    let valPorcentaje = row.cells[i].value;
+                    row.cells[i].value = kendo.format("{0:p}", parseFloat(row.cells[i].value) / 100);
+                }
+            }
+        }
+    }
+}
+            
