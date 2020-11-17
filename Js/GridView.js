@@ -210,3 +210,23 @@ function DescargaDocsExpediente(uid) {
     }
 }
             
+            
+            //Formateo de grid en exportacion a Excel
+//---------------------------------------
+function excelExport(e)
+{
+    var sheet = e.workbook.sheets[0];
+
+    for (var rowIndex = 1; rowIndex < sheet.rows.length; rowIndex++)
+    {
+        var sheet = e.workbook.sheets[0];
+
+        for (var rowIndex = 1; rowIndex < sheet.rows.length; rowIndex++)
+        {
+            var row = sheet.rows[rowIndex];
+
+            row.cells[5].format = "yy-MM-dd";
+        }
+    }
+}
+            
