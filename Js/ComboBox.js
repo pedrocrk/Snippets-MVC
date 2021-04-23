@@ -23,6 +23,14 @@ if (Combo.selectedIndex == -1) {
 //Limpia el datasource del combo
 Combo.dataSource.data([])
 
+///Funcion para limpiar los combos que no tienen valor seleccionado
+//-----------------------------------------------------------------
+function onCboxChange(e) {
+    if (this.selectedIndex == -1) {
+        this.value('');
+        this.dataSource.read();
+    }
+}
 
 //Get value of datasource on metod change
 
