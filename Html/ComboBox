@@ -3,7 +3,7 @@
     .DataTextField("Text")
     .DataValueField("Value")
     .HtmlAttributes(new { style = "width:100%", data_val = "true", data_val_required = "Seleccione el tipo de vivienda." })
-    .BindTo(new List<selectlistitem>
+    .BindTo(new List<SelectListItem>
     () {
     new SelectListItem() {
     Text = "Casa Habitación", Value = "1"
