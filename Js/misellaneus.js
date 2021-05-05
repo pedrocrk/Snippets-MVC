@@ -32,7 +32,7 @@ $(this).data("value")
 //Se deshabilitan los no seleccionados para poder seguir enviando el valor al controlador
 $("input[type=radio][name=Proveedor_Tipo]:not(:checked)").attr('disabled', true);
 
-
+//Selecciona id que contienen :
 let inputCitas = $("input[id *='inputCita_']")
 
 
