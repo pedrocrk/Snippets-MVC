@@ -31,3 +31,25 @@ $(this).data("value")
 //Simula readOnly en radionuttons
 //Se deshabilitan los no seleccionados para poder seguir enviando el valor al controlador
 $("input[type=radio][name=Proveedor_Tipo]:not(:checked)").attr('disabled', true);
+
+
+let inputCitas = $("input[id *='inputCita_']")
+
+
+        $.each(inputCitas, function (i, item) {
+            let Proveedor_Id = $(item).data('asesor-id')
+            let DiaMes = $(item).data('input-id')
+            let Num_Citas = $(item).val()
+
+            data_Cita = {
+                Proveedor_Id: Proveedor_Id, Dia: DiaMes, Num_Citas: 1//Num_Citas
+            };
+            citas.push(data_Cita);
+        });
+
+$('input[name="chkAmenidad"]').each(function (e) {
+                strChk_Id = this.id.replace("chk_", "");
+                if (Array_Amenidades.indexOf(parseInt(strChk_Id)) != -1) {
+                    $(this).prop('checked', true);
+                }
+            });
