@@ -13,6 +13,8 @@ grid.hideColumn(2);
 //------------
 grid.dataSource.data([]);
 
+//Total de registros
+grid.dataSource.data().length
 //Evento de seleccion de fila checkbox en grid de impresion
 //------------------------------------------------
 function SeleccionFila(elem, RowUID) {
