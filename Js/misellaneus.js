@@ -13,6 +13,10 @@ $('#Element').bind('input propertychange', function () {
         //do your update here
 })
 
+//get value selected o raddio button
+
+$("input[name=nombreItem]:checked").val()
+
 //Add elemento to form for serialize
 form = $("#Elementform").serializeArray();
 var newElement = {
