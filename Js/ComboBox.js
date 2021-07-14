@@ -23,6 +23,10 @@ if (Combo.selectedIndex == -1) {
 //Limpia el datasource del combo
 Combo.dataSource.data([])
 
+//lanza evento
+
+Combo.trigger("change");
+
 ///Funcion para limpiar los combos que no tienen valor seleccionado
 //-----------------------------------------------------------------
 function onCboxChange(e) {
