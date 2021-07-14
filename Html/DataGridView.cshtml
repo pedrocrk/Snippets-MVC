@@ -11,6 +11,9 @@
                                 .Name("gridView")
                                 .Columns(columns =>
                                 {
+                                    //link y funcion 
+                                    columns.Bound(p => p.Proceso_Nombre).Title("Nombre").Width("23%").HeaderHtmlAttributes(new { @style = "text-align: center;" })
+                                            .ClientTemplate("<a href=\"javascript:void(0);\" style=\"width:100%;\" onclick=\"ProcesoDetalle('#= PK_Proceso_Id #' , '#= Version_Id #')\" >#= Proceso_Nombre #</a>");
                                     columns.Bound(p => p.Fields1).Visible(false);
                                     //Fecha formateada en columna
                                     columns.Bound(p => p.FieldsFecha).Title("TituloComlumna").Width("auto").HeaderHtmlAttributes(new { @style = "text-align: center;" })
