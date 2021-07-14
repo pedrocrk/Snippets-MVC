@@ -68,3 +68,10 @@ $("#ElemntId").kendoComboBox({
         //----------------Nombre_Combo, --AttrId, -------AttrNombre, --------Valor_Id, --------------Valor_Nombre
         ComboValorActivo("AraSocio_Id", "AraSocio_Id", "Nombre_Completo", '@Model.AraSocio_Id', '@Model.Nombre_Completo');
     }
+
+function OnCboxChange(e) {
+    if (this.selectedIndex == -1) {
+        this.value('');
+        this.dataSource.read();
+    }
+}
