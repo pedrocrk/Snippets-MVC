@@ -125,7 +125,27 @@ function DescargaDocsExpediente(uid) {
     window.open(Url_DescargaDoctoDigital + '?ruta=' + Ruta_Documento, '_blank');
 }
             
-            
+///Exportacion de grid con columnas ocultas
+var exportFlag = false;
+$("#grid").data("kendoGrid").bind("excelExport", function (e) {
+    if (!exportFlag) {
+    //  e.sender.showColumn(0); for demo
+    // for your case show column that you want to see in export file
+        e.sender.showColumn(5);
+        e.sender.showColumn(6);
+        e.preventDefault();
+        exportFlag = true;
+        setTimeout(function () {
+            e.sender.saveAsExcel();
+        });
+    } else {
+        e.sender.hideColumn(5);
+        e.sender.hideColumn(6);
+        exportFlag = false;
+    }
+});
+
+
             /////Cambio de colores en exporyacion de grid
             
             function onExcelExport(e) {
