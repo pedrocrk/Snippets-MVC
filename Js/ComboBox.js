@@ -79,3 +79,25 @@ function OnCboxChange(e) {
         this.dataSource.read();
     }
 }
+
+//CAMBIAR COLOR DE FONDO A ELEMNTOS DEL COMBO
+function onVersionBound(e) {
+
+    let VersionActual = $("#Version_Nbr").val();
+
+    var ddl = e.sender;
+    var items = ddl.items(); 
+
+    for (var i = 0; i < items.length; i++) {
+        
+        var dataItem = ddl.dataItem($(items[i]));
+
+        console.log(dataItem.Version_Nbr)
+        console.log(VersionActual)
+
+        if (dataItem.Version_Nbr == VersionActual) {
+            $(items[i]).css("background-color", "red");
+        }
+    }
+
+}
