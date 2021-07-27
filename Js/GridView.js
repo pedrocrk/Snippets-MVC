@@ -58,6 +58,8 @@ var gridData = grid.dataSource.view();
             if (gridData[i].ConceptoPago_Id != //Valor a comparar\\) {
                 //Ocultar Boton
                 FormatButton.hide();
+                //cambiar color de boton
+                //$(currenRow).find(".k-grid-Eliminar").css("color", "red");
             }
         }
 
