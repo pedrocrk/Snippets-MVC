@@ -63,6 +63,36 @@ var gridData = grid.dataSource.view();
             }
         }
 
+//Cambio de color en un grid con 2 agrupadores:
+
+for (var i = 0; i < gridData.length; i++) {
+
+        let Direccion = gridData[i].items;
+
+        for (var l = 0; l < Direccion.length; l++) {
+            
+            let Departamento = Direccion[l].items;
+
+            for (var j = 0; j < Departamento.length; j++) {
+                
+                let Permiso = Departamento[j];
+
+                var currentUid = Permiso.uid;
+                var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
+                var FormatButton = $(currenRow).find(".k-grid-Eliminar");
+                
+                console.log(Permiso.Excluido)
+
+                if (Permiso.Excluido == true) {
+                    $(currenRow).find(".k-grid-Eliminar").css("color", "red");
+                }
+                if (Permiso.Excluido == false) {
+                    $(currenRow).find(".k-grid-Eliminar").css("color", "green");
+                }
+            }
+        }
+    }
+
 //Obtener el valor de un atributo desde una fila seleccionada en el grid
 var selectedItem = grid.dataItem(grid.select());
 var item= selectedItem.Item;
