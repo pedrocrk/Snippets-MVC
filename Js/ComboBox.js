@@ -101,3 +101,21 @@ function onVersionBound(e) {
     }
 
 }
+
+//Deshabilitar item en combo
+//Evento databound del combo estatus
+function onEstatusBound(e) {
+
+    var ddl = e.sender;
+    var items = ddl.items();
+    
+    for (var i = 0; i < items.length; i++) {
+        var dataItem = ddl.dataItem($(items[i]));
+        console.log(dataItem)
+        if (dataItem.Estatus_Id == 0) {
+            $(items[i]).attr('disabled', 'disabled');
+            $(items[i]).addClass("ItemDisabled");//Add class for styles
+        }
+    }
+}
+</style>
