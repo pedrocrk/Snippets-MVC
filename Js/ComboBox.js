@@ -118,4 +118,20 @@ function onEstatusBound(e) {
         }
     }
 }
+//Funcion del combo padre para cascada del combo Children
+function onComboChange() {
+    if (this.selectedIndex == -1) {
+        this.value('');
+        this.dataSource.read();
+        $('#Children').data("kendoComboBox").value('');
+        $('#Children').data("kendoComboBox").dataSource.data([]);
+        $('#Children').data("kendoComboBox").enable(false);
+    }
+    else {
+        $('#Children').data("kendoComboBox").enable(true);
+        $('#Children').data("kendoComboBox").value('');
+        $('#Children').data("kendoComboBox").dataSource.read();
+    }
+}
+
 </style>
