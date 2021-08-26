@@ -6,6 +6,15 @@
     
 @Scripts.Render("~/bundles/Grid_Export")//Include library of excel export
 
+///Ajuste el grid cuando en la exportacion se ocultan o muestran columnas
+
+<style>
+    #grid > .k-grid-header > div > table,
+    #grid > .k-grid-content > table {
+        width: 100% !important;
+    }
+</style>
+
 <div class="col-lg-12">
     @(Html.Kendo().Grid<PROYECT.Modelos.Model>()
                                 .Name("gridView")
