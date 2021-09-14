@@ -8,6 +8,11 @@
 $("#Element").rules("remove", "required")
 $("#Element").rules("add", "required")
 
+//Set enabled or disablet element
+$("#Element")..prop("disabled", false);
+$("#Element")..prop("disabled", true);
+
+
 //Add event change of textbox from jquery
 $('#Element').bind('input propertychange', function () {
         //do your update here
@@ -34,7 +39,7 @@ $(this).data("value")
 
 //Simula readOnly en radionuttons
 //Se deshabilitan los no seleccionados para poder seguir enviando el valor al controlador
-$("input[type=radio][name=Proveedor_Tipo]:not(:checked)").attr('disabled', true);
+$("input[type=radio][name=Proveedor_Tipo]:not(:checked)").prop('disabled', true);
 
 //Selecciona id que contienen :
 let inputCitas = $("input[id *='inputCita_']")
