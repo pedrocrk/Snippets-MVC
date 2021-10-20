@@ -283,4 +283,31 @@ function excelExport(e)
         }
     }
 }
-            
+
+// Evento OnExcelExoprt del grid, edita las celdas de totales del footer
+function AjustaFooterExport(e) {
+    
+    var rows = e.workbook.sheets[0].rows;
+
+    for (var ri = 0; ri < rows.length; ri++) {
+
+        var row = rows[ri];
+
+        if (row.type == "group-footer" || row.type == "footer") {
+
+            for (var ci = 0; ci < row.cells.length; ci++) {
+
+                var cell = row.cells[ci];
+
+                if (typeof cell.value != "undefined") {
+                    
+                    cell.value = cell.value.replace("<div style='text-align: center; width:100%;'>", "")
+                    cell.value = cell.value.replace("</div>", "")
+                    cell.hAlign = "right";
+                }
+            }
+
+        }
+    }
+
+}
