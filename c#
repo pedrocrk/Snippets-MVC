@@ -1,0 +1,15 @@
+
+////PRUEBA DE CREACION LOCAL DE EXCEL
+                        
+      MemoryStream archivo = new MemoryStream();
+      archivo = Adjunto_Notificaciones(notifica, Tipo);
+
+      string strPath = "~/Views/Web.config";
+      var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(strPath);
+      string strFilePath = config.AppSettings.Settings["PromocionesPath"].Value;
+      strFilePath = Path.Combine(strFilePath, "test.xlsx");
+      using (FileStream fs = new FileStream(strFilePath, FileMode.OpenOrCreate))
+      {
+          archivo.CopyTo(fs);
+          fs.Flush();
+      }
