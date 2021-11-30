@@ -49,6 +49,19 @@
                                         .Title("Generar")
                                         .Width("70px")
                                         .HeaderHtmlAttributes(new { @style = "text-align: center;" });
+                                         
+                                         /////Columna checks con check header
+                                         columns.Template(@<text></text>)
+                                        .ClientTemplate(
+                                            "<input class='m-0 p-0 form-check-input chk-box' type='checkbox' id='chkLead_#:Lead_Id#' name='chkCheck'>"
+                                        )
+                                        .Title("")
+                                        .Width("34px")
+                                        .HeaderHtmlAttributes(new { @style = "text-align: center;" })
+                                        .HtmlAttributes(new { @style = "text-align: center;" })
+                                        .HeaderTemplate(@<text>
+                                            <input class="form-check-input chk-box" id="selectAll_Leads" name="selectAll_Leads" type="checkbox"/>
+                                        </text>);
                                 })
                                 .Scrollable(scr => scr.Height(190))
                                 .Events(e => e.DataBound("onGridDataBound"))
