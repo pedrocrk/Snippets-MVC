@@ -113,7 +113,7 @@ function onEstatusBound(e) {
         var dataItem = ddl.dataItem($(items[i]));
         console.log(dataItem)
         if (dataItem.Estatus_Id == 0) {
-            $(items[i]).attr('disabled', 'disabled');
+            $(items[i]).prop('disabled', 'disabled');
             $(items[i]).addClass("ItemDisabled");//Add class for styles
         }
     }
