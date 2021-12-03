@@ -113,11 +113,23 @@ function onEstatusBound(e) {
         var dataItem = ddl.dataItem($(items[i]));
         console.log(dataItem)
         if (dataItem.Estatus_Id == 0) {
-            $(items[i]).prop('disabled', 'disabled');
+            $(items[i]).prop("disabled", true);
             $(items[i]).addClass("ItemDisabled");//Add class for styles
         }
     }
 }
+/////Syle de deshabilitacion
+<style>
+    .ItemDisabled{
+        color:grey;
+    }
+    .ItemDisabled:hover{
+        color:grey;
+    }
+</style>
+
+
+
 //Funcion del combo padre para cascada del combo Children
 function onComboChange() {
     if (this.selectedIndex == -1) {
