@@ -1,0 +1,96 @@
+﻿<script>
+
+    //Deshabilitar item en combo
+    function onBeneficioBound(e) {  
+        let ddl = e.sender;
+        let items = ddl.items();
+        for (var i = 0; i < items.length; i++) {
+            let dataItemC = ddl.dataItem($(items[i]));
+            if (dataItemC.Beneficio_Id == 2) {
+                $(items[i]).prop("disabled", true);
+                $(items[i]).addClass("ItemDisabled");//Add class for styles
+            }
+        }
+    }
+    function onBeneficioChange(e) {
+        let row = $("#Beneficio_Id2").closest("tr");
+        let grid = $("#Beneficio_Id2").closest("[data-role=grid]").data("kendoGrid");
+
+        let dataItem = grid.dataItem(row);
+        let Cliente_Id = dataItem.Cliente_Id;
+
+        if (this.value() == 1) {            
+
+            $('#chkPromoNavidad_' + Cliente_Id).prop('disabled', false);
+        }
+        else {
+            $('#chkPromoNavidad_' + Cliente_Id).prop('checked', false);
+            $('#chkPromoNavidad_' + Cliente_Id).prop('disabled', true);
+        }
+    }
+
+</script>
+
+
+
+@(Html.Kendo().ComboBox()
+    .Name("Beneficio_Id2")
+    .DataTextField("Beneficio_Nombre")
+    .DataValueField("Beneficio_Id")
+    .HtmlAttributes(new { style = "width:100%"})
+    .Filter("contains")
+    .AutoBind(true)
+    .MinLength(3)
+    .Events(e=>e.DataBound("onBeneficioBound").Change("onBeneficioChange"))
+    .NoDataTemplateId("NoDataTemplate")
+    .DataSource(dataSource => dataSource
+        .Read(read => read.Action("GetBeneficios", "Promociones"))
+        .ServerFiltering(false)
+    )
+)
+
+<script>
+
+    $(document).ready(function () {
+
+        try {
+            var row = $("#Beneficio_Id2").closest("tr");
+            var grid = $("#Beneficio_Id2").closest("[data-role=grid]").data("kendoGrid");
+
+            var dataItem = grid.dataItem(row);
+            var benef = dataItem.Beneficio_Id2;
+
+            var widget = $('#Beneficio_Id2').data('kendoComboBox');
+
+            if (benef != null) {
+                if (benef.Beneficio_Id != null) {
+                    widget.value(benef.Beneficio_Id);
+                }
+            }
+
+            setTimeout(function () { widget.open(); }, 200);
+
+        }
+        catch (e) {
+            alert('Error:' + e.message);
+        }
+    });
+
+    ////MODEL
+    //public int Beneficio_Id { get; set; }
+    //public Beneficio Beneficio_Id2 { get; set; }
+    //public class Beneficio
+    //{
+    //    public int Beneficio_Id { get; set; }
+    //    public string Beneficio_Nombre { get; set; }
+    //}
+
+    ////VIEW
+
+    @*columns.Bound(p => p.Beneficio_Id2).Title("Beneficio").Width("135px").HeaderHtmlAttributes(new { @style = "text-align: center;" }).HtmlAttributes(new { @style = "text-align: center;" })
+                                    .EditorTemplateName("_Promociones_TipoBeneficios")
+                                    .ClientTemplate("#= Beneficio_Id2 != null ? Beneficio_Id2.Beneficio_Nombre != null ? Beneficio_Id2.Beneficio_Nombre : '': ''#")
+                                    .Locked(true);*@
+</script>
+
+
