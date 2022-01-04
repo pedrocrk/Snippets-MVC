@@ -62,3 +62,7 @@ $('input[name="chkAmenidad"]').each(function (e) {
                     $(this).prop('checked', true);
                 }
             });
+
+
+///Kendo format money
+kendo.toString(parseFloat(saldoPendienteAjuste), 'c2'))
