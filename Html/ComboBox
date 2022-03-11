@@ -20,3 +20,4 @@
     .Read(read => read.Action("Sepomex_ObtenerEstados", "Catalogos").Data("Estado_Filtro"))
     .ServerFiltering(false))
 )
+<span class="field-validation-valid text-danger" data-valmsg-for="Cliente_Id" data-valmsg-replace="true"></span>
