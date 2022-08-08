@@ -13,3 +13,8 @@
           archivo.CopyTo(fs);
           fs.Flush();
       }
+
+
+//////Recibir Html desde el cliente:
+
+string html = WebUtility.HtmlDecode(paramHtml)
