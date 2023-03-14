@@ -32,6 +32,23 @@ function SeleccionFila(elem, RowUID) {
         }
     }
 }
+
+//Selecciona todos los checks del grid
+ $("input[name=selectAll_Leads]").change(function () {
+        let checkLeads = $("input[id *='chkLead_']")
+
+        if ($(this).is(":checked")) {
+            $.each(checkLeads, function (i, item) {
+                $(this).prop('checked', true);
+            });
+        }
+        else {
+            $.each(checkLeads, function (i, item) {
+                $(this).prop('checked', false);
+            });
+        }
+    });
+
 //Recorrido de checks seleccionados en el grid
 var sum;
 var ListSeleccionadas = '';
