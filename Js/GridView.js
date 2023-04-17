@@ -328,3 +328,7 @@ function AjustaFooterExport(e) {
     }
 
 }
+
+//Para exportar multiples grids en un solo excel en diferentes hojas, consultar la referencia en ARANET V3:
+//ARANET\Scripts\app\Cobranza\GestionCartera\Cartera_Index.js
+
