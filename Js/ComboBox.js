@@ -79,6 +79,13 @@ function OnCboxChange(e) {
         this.dataSource.read();
     }
 }
+///Si el valor inicial es vacio 0 cero limpia el combo
+function OnCboxBound(e) {
+    if (this.selectedIndex == -1) {
+        if (this.value() == '0')
+            this.value('');
+    }
+}
 
 //CAMBIAR COLOR DE FONDO A ELEMNTOS DEL COMBO
 function onVersionBound(e) {
