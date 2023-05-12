@@ -5,6 +5,7 @@
    https://stackoverflow.com/questions/30948739/kendo-ui-numerictextbox-percentage-format
    https://www.telerik.com/forums/numeric-formats
       .Format("#.#### '%'")
+      .Format("$#,##0.00") /// FORMAT MONEY
       .Min(0)
       .Decimals(4)
    ///.-------------------------///
