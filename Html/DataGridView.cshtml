@@ -38,6 +38,8 @@
                                     .ClientTemplate("#=kendo.format(\"{0:p}\", "Field" / 100)#");
                                     //Formato decimal
                                     .Format("{0:c}");
+                                    ////Valor absoluto y signo negativo
+                                    .ClientTemplate("# if (Monto < 0) { # - #= kendo.toString(Math.abs(Monto),    'c') # # } else { # #= kendo.toString(Monto, 'c') # # } #")
                                     //ICheckBoxControl en columna
                                     columns.Template(@<text></text>)
                                         .ClientTemplate(
