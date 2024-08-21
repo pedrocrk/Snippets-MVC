@@ -66,3 +66,5 @@ $('input[name="chkAmenidad"]').each(function (e) {
 
 ///Kendo format money
 kendo.toString(parseFloat(saldoPendienteAjuste), 'c2'))
+
+kendo.parseDate(fecha, "dd/MM/yyyy");
